@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#08090b" />
+    <title>Herald</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-mode="IDLE">
+    <!-- Driving view: a status light and one control. No text to read. -->
+    <main id="drive">
+      <div id="lamp" class="lamp" aria-hidden="true"></div>
+      <p id="modeLabel" class="mode">Not driving</p>
+
+      <button id="bigButton" class="big" type="button" aria-label="Talk to Herald">
+        <span id="bigLabel">Start drive</span>
+      </button>
+
+      <div class="meta">
+        <span id="mediaState">Media off</span>
+        <span id="agentState">No agents</span>
+        <span id="deskState">Desk 0</span>
+      </div>
+
+      <p id="caption" class="caption" aria-live="polite"></p>
+    </main>
+
+    <!-- Simulator only. Never part of the driving interaction. -->
+    <section id="sim" hidden>
+      <h2>Simulator</h2>
+      <div class="simRow">
+        <button data-scenario="seed" type="button">Seed two agents</button>
+        <button data-scenario="finish" type="button">Agent finishes</button>
+        <button data-scenario="decision" type="button">Agent needs a decision</button>
+        <button data-scenario="big" type="button">Big diff (desk)</button>
+        <button data-scenario="fail" type="button">Tests fail</button>
+      </div>
+      <div class="simRow">
+        <label><input id="ttsToggle" type="checkbox" checked /> Speak aloud</label>
+        <label><input id="vadToggle" type="checkbox" checked /> Hands-free mic in TALK</label>
+        <button id="parkBtn" type="button">I'm parked</button>
+      </div>
+      <p class="simHint">
+        Type instead of talking (useful without a mic):
+      </p>
+      <form id="typeForm" class="simRow">
+        <input id="typeInput" type="text" placeholder="start an agent to add rate limiting" />
+        <button type="submit">Send</button>
+      </form>
+      <pre id="log"></pre>
+    </section>
+
+    <button id="simToggle" class="simToggle" type="button" aria-label="Toggle simulator panel">sim</button>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

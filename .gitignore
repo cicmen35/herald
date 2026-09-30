@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.local
+*.log
+.herald/raw/
+.herald/spikes/
+.herald/ledger.jsonl
+.herald/hook-errors.log
+.DS_Store
+.pnpm-store/

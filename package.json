@@ -1,0 +1,19 @@
+{
+  "name": "herald",
+  "private": true,
+  "packageManager": "pnpm@10.6.5",
+  "scripts": {
+    "build": "pnpm -r --filter @herald/* build",
+    "test": "pnpm -r --filter @herald/* test",
+    "spike:cloud": "pnpm --filter @herald/server spike:cloud",
+    "spike:github": "pnpm --filter @herald/server spike:github",
+    "spike:hook": "node hooks/dump-raw.mjs --self-test",
+    "car": "pnpm --filter @herald/server car",
+    "spike:voice": "node apps/car-client/serve.mjs",
+    "chief": "pnpm --filter @herald/server chief",
+    "chief:mock": "pnpm --filter @herald/server chief -- --mock"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

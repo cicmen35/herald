@@ -1,0 +1,23 @@
+{
+  "name": "@herald/server",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json --noEmit",
+    "spike:cloud": "tsx src/cli/cloud-spike.ts",
+    "spike:github": "tsx src/cli/github-spike.ts",
+    "chief": "tsx src/cli/chief.ts",
+    "car": "tsx src/cli/serve.ts"
+  },
+  "dependencies": {
+    "@herald/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.31.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
+  }
+}

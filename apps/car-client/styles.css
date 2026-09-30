@@ -1,0 +1,204 @@
+:root {
+  color-scheme: dark;
+  --bg: #08090b;
+  --fg: #f6f3ec;
+  --dim: #8b939d;
+  --listen: #3f7d6a;
+  --briefing: #c9a227;
+  --talk: #7ad7b0;
+  --confirm: #e8a33d;
+  --parked: #6b7db3;
+  --alert: #e85d4c;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+}
+
+#drive {
+  width: min(30rem, 94vw);
+  padding: 2rem 1rem calc(1rem + env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+/* Status light: the only thing a driver should ever need to glance at. */
+.lamp {
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: #23262b;
+  box-shadow: 0 0 0 1px #2f343a inset;
+  transition: background 220ms ease, box-shadow 220ms ease;
+}
+
+body[data-mode="LISTEN"] .lamp {
+  background: var(--listen);
+  box-shadow: 0 0 2.5rem -0.4rem var(--listen);
+}
+body[data-mode="BRIEFING"] .lamp {
+  background: var(--briefing);
+  box-shadow: 0 0 3rem -0.3rem var(--briefing);
+}
+body[data-mode="TALK"] .lamp {
+  background: var(--talk);
+  box-shadow: 0 0 3.5rem -0.3rem var(--talk);
+}
+body[data-mode="CONFIRM"] .lamp {
+  background: var(--confirm);
+  box-shadow: 0 0 3rem -0.3rem var(--confirm);
+}
+/* The pulse means "the microphone is open", never just "we intend to listen". */
+body[data-mic="1"] .lamp {
+  animation: pulse 1.1s ease-in-out infinite;
+}
+body[data-mode="PARKED"] .lamp {
+  background: var(--parked);
+  box-shadow: 0 0 2.5rem -0.4rem var(--parked);
+}
+body[data-alert="1"] .lamp {
+  background: var(--alert);
+  box-shadow: 0 0 3.5rem -0.2rem var(--alert);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.mode {
+  margin: 0 0 1.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+
+.big {
+  width: 100%;
+  min-height: min(44vh, 18rem);
+  border: 0;
+  border-radius: 1.5rem;
+  background: #1b1f25;
+  color: var(--fg);
+  font-size: 1.7rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 160ms ease, transform 120ms ease;
+  /* Hold-to-talk: a long press must not select text or open a callout. */
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.big:active {
+  transform: scale(0.985);
+}
+body[data-mode="IDLE"] .big {
+  background: #2a5f50;
+}
+body[data-mode="LISTEN"] .big {
+  background: #1b1f25;
+}
+body[data-mode="TALK"] .big,
+body[data-mode="CONFIRM"] .big {
+  background: #2f6f5c;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 1rem 0 0.5rem;
+  font-size: 0.72rem;
+  color: var(--dim);
+}
+
+.caption {
+  min-height: 2.6rem;
+  font-size: 0.95rem;
+  color: #cfcabf;
+  margin: 0.5rem 0 0;
+}
+
+/* Simulator chrome, deliberately separate from the driving view. */
+#sim {
+  position: fixed;
+  inset: auto 0 0 0;
+  background: #0f1216;
+  border-top: 1px solid #23282f;
+  padding: 0.9rem 1rem calc(0.9rem + env(safe-area-inset-bottom));
+  max-height: 60dvh;
+  overflow: auto;
+}
+#sim h2 {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.simRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+  align-items: center;
+}
+.simRow button,
+.simRow input[type="text"] {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  border: 1px solid #2d333b;
+  background: #171b21;
+  color: inherit;
+  font-size: 0.82rem;
+}
+.simRow input[type="text"] {
+  flex: 1;
+  min-width: 10rem;
+}
+.simRow label {
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+.simHint {
+  font-size: 0.75rem;
+  color: var(--dim);
+  margin: 0.2rem 0;
+}
+#log {
+  font-size: 0.68rem;
+  line-height: 1.45;
+  background: #0b0e11;
+  border: 1px solid #1d2329;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  max-height: 11rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  color: #9fb0a8;
+}
+
+.simToggle {
+  position: fixed;
+  top: 0.7rem;
+  right: 0.7rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.7rem;
+  border-radius: 0.4rem;
+  border: 1px solid #2d333b;
+  background: #14181d;
+  color: var(--dim);
+}

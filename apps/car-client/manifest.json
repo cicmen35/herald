@@ -1,0 +1,8 @@
+{
+  "name": "Herald voice spike",
+  "short_name": "Herald",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10"
+}

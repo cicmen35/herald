@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [{ "command": "node hooks/dump-raw.mjs sessionStart" }],
+    "sessionEnd": [{ "command": "node hooks/dump-raw.mjs sessionEnd" }],
+    "stop": [{ "command": "node hooks/dump-raw.mjs stop" }],
+    "afterAgentResponse": [{ "command": "node hooks/dump-raw.mjs afterAgentResponse" }],
+    "afterAgentThought": [{ "command": "node hooks/dump-raw.mjs afterAgentThought" }],
+    "afterFileEdit": [{ "command": "node hooks/dump-raw.mjs afterFileEdit" }],
+    "subagentStart": [{ "command": "node hooks/dump-raw.mjs subagentStart" }],
+    "subagentStop": [{ "command": "node hooks/dump-raw.mjs subagentStop" }],
+    "beforeMCPExecution": [{ "command": "node hooks/dump-raw.mjs beforeMCPExecution" }],
+    "afterMCPExecution": [{ "command": "node hooks/dump-raw.mjs afterMCPExecution" }],
+    "beforeSubmitPrompt": [{ "command": "node hooks/dump-raw.mjs beforeSubmitPrompt" }],
+    "preToolUse": [{ "command": "node hooks/dump-raw.mjs preToolUse" }],
+    "postToolUse": [{ "command": "node hooks/dump-raw.mjs postToolUse" }]
+  }
+}
