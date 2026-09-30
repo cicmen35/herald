@@ -1,6 +1,6 @@
 # Herald
 
-Voice-first layer for Cursor agents while driving. Placeholder name; see `packages/core/src/brand.ts`.
+Voice-first layer for agents while driving.
 
 **Safety:** demo parked, on a simulator, or with a phone and headphones. Follow local laws. The car UI is a status light and one big button.
 
@@ -12,7 +12,7 @@ cp .env.example .env   # then add keys
 pnpm test
 ```
 
-## Keys (server only, never the phone)
+## Keys (server)
 
 - `CURSOR_API_KEY` — Cursor dashboard API key (Cloud Agents).
 - `HERALD_TEST_REPO` — GitHub URL the key can launch agents against.
